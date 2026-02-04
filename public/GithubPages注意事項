@@ -1,0 +1,48 @@
+Github Pages 是Github的一項功能，可免費部屬靜態應用程式 (純前端無後端)。
+
+
+基本設置:
+1. 將倉庫權限設置為public (private雖然也可以使用Github Pages功能，但需要額外付費)
+2. 開啟[倉庫 > Setting > Pages]，設定選項[Source]，此處有兩個選項可選擇
+設定選項[Source] = [Deploy from a branch]，則使用分支的部屬方式
+設定選項[Source] = [Github Actions]，則使用工作流的部屬方式
+(目前會建議使用工作流的部屬方式)
+
+
+分支部屬方式:
+(使用這個部屬方式，Github會自動為該倉庫新增一個gh-pages分支，並自動部屬該分支)
+1. 選項[Branch] = [gh-pages /(root)]
+2. 專案中CMD執行 `npm install gh-pages --save-dev` 下載套件
+3. package.json 新增以下內容
+```
+{
+    "homepage": "https://<Github帳戶名稱>.github.io/<倉庫名稱>",
+    "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+}
+```
+4. CMD執行 `npm run deploy` 即可，將專案打包後會自動將打包檔推送至倉庫的gh-pages分支並部屬打包檔
+
+
+工作流部屬方式:
+1. 開啟[倉庫 > Actions]，點擊選項[new workflow]建立新的工作流
+2. 有許多現成的工作流文件範例可供搜索，根據專案性質搜索適合的工作流文件，點擊工作流文件的選項[Configure]預覽工作流文件內容
+3. 確認工作流文件內容沒問題後點擊選項[Commit changes...]，即可將此工作流文件自動添加至倉庫中
+4. 專案CMD執行 `git pull`，將工作流文件同步回專案
+5. 專案CMD執行 `npm install --save-dev @babel/plugin-proposal-private-property-in-object` 下載套件
+6. 按照目前工作流文件的設置(action_deploy.yml)，只要專案執行git push操作，會自動將倉庫內的專案打包後並推送至虛擬環境的分支並部屬打包檔
+
+
+如果以上設置沒有錯誤，則訪問以下網址即可成功瀏覽到網站內容
+`https://<Github帳戶名稱>.github.io/<倉庫名稱>/` 或者 `https://<Github帳戶名稱>.github.io/<倉庫名稱>/index.html`
+(部屬不是及時完成的，部屬完就馬上瀏覽網站可能看不到變化，需等待一小段時間)
+(若使用工作流部屬方式就可以方便追蹤，開啟[倉庫 > Actions]，即可查看部屬進度，顯示綠色就為部屬完成並成功)
+
+
+備註:
+如果專案有使用fetch()請求相對路徑，
+ex: React專案預設帶有public資料夾，public資料夾下的資源，在開發環境下本可以直接用 `fetch('/ABC.jpg')` 請求到，
+但是這樣在部屬環境下會請求不到，需改成 `fetch(`${process.env.PUBLIC_URL}/ABC.jpg`)` 才能請求到，
+${process.env.PUBLIC_URL}是React的一項參數，可自動辨識當前環境的根目錄。

@@ -1,0 +1,140 @@
+name: 同步復刻
+
+on:
+  schedule:
+    # 台灣時間午夜 00:00 (UTC+8) 相當於 UTC 16:00 (前一天)
+    - cron: "0 16 * * *"
+  push:
+    branches: [master]
+    paths:
+      - ".github/workflows/SyncUpda.yml"
+  workflow_dispatch: # 允許手動觸發
+
+permissions:
+  actions: write
+  checks: write
+  contents: write
+
+jobs:
+  sync-fork:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 取得代碼
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          # 確保檢出 master 分支
+          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 檢測是否為復刻倉庫
+        id: check-fork
+        run: |
+          REPO_FULL_NAME="${GITHUB_REPOSITORY}"
+          if git remote -v | grep -q upstream; then
+            echo "這是復刻倉庫，已存在上遊遠程"
+            echo "IS_FORK=true" >> $GITHUB_OUTPUT
+          else
+            # 嘗試從 API 獲取 fork 信息
+            REPO_INFO=$(curl -s -H "Authorization: token ${{ github.token }}" \
+              "https://api.github.com/repos/${REPO_FULL_NAME}")
+            if echo "$REPO_INFO" | grep -q '"fork": true'; then
+              echo "這是復刻倉庫"
+              PARENT_REPO="https://github.com/Kaosu-Niku/ArknightCalculator.git"
+              echo "上遊倉庫 URL: $PARENT_REPO"
+              git remote add upstream $PARENT_REPO
+              echo "IS_FORK=true" >> $GITHUB_OUTPUT
+            else
+              echo "這是原始倉庫，不需要同步"
+              echo "IS_FORK=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: 檢查分支狀態
+        if: steps.check-fork.outputs.IS_FORK == 'true'
+        id: check-branch
+        run: |
+          echo "開始檢查分支狀態..."
+          git fetch upstream
+          # 標記工作流文件為總是保留本地版本 (此設定對 rebase 衝突時無效，但保留)
+          git config --local merge.ours.driver true
+          echo ".github/workflows/* merge=ours" > .git/info/attributes
+          # 確保我們有 upstream/master 分支並只處理 master 分支
+          if git rev-parse --verify upstream/master >/dev/null 2>&1; then
+            echo "檢查本地 master 是否落後於上遊 master..."
+            # 確保我們在 master 分支上
+            git checkout master
+            
+            # 獲取分支比較狀態
+            BEHIND_COUNT=$(git rev-list --count master..upstream/master)
+            AHEAD_COUNT=$(git rev-list --count upstream/master..master)
+            if [ "$BEHIND_COUNT" -gt 0 ] || [ "$AHEAD_COUNT" -gt 0 ]; then
+              echo "本地 master 分支與上遊不同步 (落後 $BEHIND_COUNT, 領先 $AHEAD_COUNT)。"
+              # 設置為需要同步
+              echo "NEED_SYNC=true" >> $GITHUB_OUTPUT
+            else
+              echo "本地 master 分支與上遊完全同步，無需操作"
+              echo "NEED_SYNC=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "無法找到 upstream/master 分支，請檢查上遊倉庫配置"
+            echo "NEED_SYNC=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 檢測觸發方式
+        id: check-trigger
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "MANUAL_TRIGGER=true" >> $GITHUB_OUTPUT
+            # 獲取觸發者資訊
+            ACTOR="${{ github.actor }}"
+            # 通過 API 獲取觸發者的電子郵件
+            USER_EMAIL=$(curl -s -H "Authorization: token ${{ github.token }}" \
+              "https://api.github.com/users/${ACTOR}" | grep -o '"email": "[^"]*"' | cut -d'"' -f4)
+            
+            if [ -z "$USER_EMAIL" ]; then
+              # 如果 API 未返回電子郵件，使用備用郵件格式
+              USER_EMAIL="${ACTOR}@users.noreply.github.com"
+            fi
+            
+            echo "ACTOR_NAME=${ACTOR}" >> $GITHUB_OUTPUT
+            echo "ACTOR_EMAIL=${USER_EMAIL}" >> $GITHUB_OUTPUT
+            echo "檢測到手動觸發，觸發者: ${ACTOR}, 郵件: ${USER_EMAIL}"
+          else
+            echo "MANUAL_TRIGGER=false" >> $GITHUB_OUTPUT
+            echo "自動觸發的工作流程"
+          fi
+
+      - name: 配置 Git 身份 - 自動觸發
+        if: steps.check-fork.outputs.IS_FORK == 'true' && steps.check-branch.outputs.NEED_SYNC == 'true' && steps.check-trigger.outputs.MANUAL_TRIGGER == 'false'
+        run: |
+          # 設置機器人身份，但不會出現在貢獻者列表
+          git config --global user.name "github-actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo "已配置 Git 用戶信息為機器人"
+
+      - name: 配置 Git 身份 - 手動觸發
+        if: steps.check-fork.outputs.IS_FORK == 'true' && steps.check-branch.outputs.NEED_SYNC == 'true' && steps.check-trigger.outputs.MANUAL_TRIGGER == 'true'
+        run: |
+          # 配置用戶信息為觸發者
+          git config --global user.name "${{ steps.check-trigger.outputs.ACTOR_NAME }}"
+          git config --global user.email "${{ steps.check-trigger.outputs.ACTOR_EMAIL }}"
+          echo "已配置 Git 用戶信息為觸發者: ${{ steps.check-trigger.outputs.ACTOR_NAME }}"
+
+      - name: 同步 master 分支
+        if: steps.check-fork.outputs.IS_FORK == 'true' && steps.check-branch.outputs.NEED_SYNC == 'true'
+        run: |
+          echo "開始同步 master 分支 (使用 rebase 策略)..."
+          # Rebase 會將您的本地提交（如果有的話）應用在上遊最新提交之上
+          # 這會保持歷史紀錄的線性，從而解決「領先提交」的問題
+          git rebase upstream/master
+          echo "準備提交更改..."
+
+      - name: 提交更改
+        if: steps.check-fork.outputs.IS_FORK == 'true' && steps.check-branch.outputs.NEED_SYNC == 'true'
+        run: |
+          # 因為 rebase 改寫了提交歷史，所以需要強制推送
+          # --force-with-lease 是比 --force 更安全的選項
+          git push origin master --force-with-lease
+          echo "master 分支同步完成！"

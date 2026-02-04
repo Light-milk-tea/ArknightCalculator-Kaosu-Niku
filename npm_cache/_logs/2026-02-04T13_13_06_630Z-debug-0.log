@@ -1,0 +1,33 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.3
+2 info using node@v22.19.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\23625\Desktop\Kaosu-Niku\ArknightCalculator\.npmrc
+5 silly config load:file:C:\Users\23625\.npmrc
+6 silly config load:file:C:\Users\23625\Desktop\Kaosu-Niku\ArknightCalculator\npm\etc\npmrc
+7 verbose title npm outdated
+8 verbose argv "outdated"
+9 verbose logfile logs-max:10 dir:C:\Users\23625\Desktop\Kaosu-Niku\ArknightCalculator\npm_cache\_logs\2026-02-04T13_13_06_630Z-
+10 verbose logfile C:\Users\23625\Desktop\Kaosu-Niku\ArknightCalculator\npm_cache\_logs\2026-02-04T13_13_06_630Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 http fetch GET 200 https://registry.npmmirror.com/gh-pages 170ms (cache miss)
+14 http fetch GET 200 https://registry.npmmirror.com/@babel%2fplugin-proposal-private-property-in-object 173ms (cache miss)
+15 http fetch GET 200 https://registry.npmmirror.com/nth-check 177ms (cache miss)
+16 http fetch GET 200 https://registry.npmmirror.com/web-vitals 176ms (cache miss)
+17 http fetch GET 200 https://registry.npmmirror.com/svgo 181ms (cache miss)
+18 http fetch GET 200 https://registry.npmmirror.com/jquery 193ms (cache miss)
+19 http fetch GET 200 https://registry.npmmirror.com/react-scripts 200ms (cache miss)
+20 http fetch GET 200 https://registry.npmmirror.com/postcss 206ms (cache miss)
+21 http fetch GET 200 https://registry.npmmirror.com/cra-template 241ms (cache miss)
+22 http fetch GET 200 https://registry.npmmirror.com/bootstrap 248ms (cache miss)
+23 http fetch GET 200 https://registry.npmmirror.com/datatables.net 256ms (cache miss)
+24 http fetch GET 200 https://registry.npmmirror.com/datatables.net-dt 311ms (cache miss)
+25 http fetch GET 200 https://registry.npmmirror.com/react-dom 408ms (cache miss)
+26 http fetch GET 200 https://registry.npmmirror.com/react 634ms (cache miss)
+27 verbose cwd C:\Users\23625\Desktop\Kaosu-Niku\ArknightCalculator
+28 verbose os Windows_NT 10.0.26200
+29 verbose node v22.19.0
+30 verbose npm  v10.9.3
+31 verbose exit 1
+32 verbose code 1

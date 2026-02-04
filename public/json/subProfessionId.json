@@ -1,0 +1,344 @@
+{
+  "bearer": {
+    "chineseName": "執旗手",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "charger": {
+    "chineseName": "衝鋒手",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "pioneer": {
+    "chineseName": "尖兵",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "tactician": {
+    "chineseName": "戰術家",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "agent": {
+    "chineseName": "情報官",
+    "attackType": "物理",
+    "position": "地面"
+  },    
+
+  "fearless": {
+    "chineseName": "無畏者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "artsfghter": {
+    "chineseName": "術戰者",
+    "attackType": "法術",
+    "position": "地面"
+  },
+  "musha": {
+    "chineseName": "武者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "fighter": {
+    "chineseName": "鬥士",
+    "attackType": "物理",
+    "position": "地面"
+  }, 
+  "centurion": {
+    "chineseName": "強攻手",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "reaper": {
+    "chineseName": "收割者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "crusher": {
+    "chineseName": "重劍手",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "hammer": {
+    "chineseName": "撼地者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "lord": {
+    "chineseName": "領主",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "sword": {
+    "chineseName": "劍豪",
+    "attackType": "物理",
+    "position": "地面"
+  }, 
+  "primguard": {
+    "chineseName": "本源近衛",
+    "attackType": "物理",
+    "position": "地面"
+  },  
+  "instructor": {
+    "chineseName": "教官",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "librator": {
+    "chineseName": "解放者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  
+  "fastshot": {
+    "chineseName": "速射手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "loopshooter": {
+    "chineseName": "回環射手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "longrange": {
+    "chineseName": "神射手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "siegesniper": {
+    "chineseName": "攻城手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "closerange": {
+    "chineseName": "重射手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "hunter": {
+    "chineseName": "獵手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "aoesniper": {
+    "chineseName": "炮手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "reaperrange": {
+    "chineseName": "散射手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "bombarder": {
+    "chineseName": "投擲手",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  
+  "corecaster": {
+    "chineseName": "中堅術師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "funnel": {
+    "chineseName": "御械術師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "mystic": {
+    "chineseName": "秘術師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "chain": {
+    "chineseName": "鏈術師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "splashcaster": {
+    "chineseName": "擴散術師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "blastcaster": {
+    "chineseName": "轟擊術師",
+    "attackType": "法術",
+    "position": "高台"
+  }, 
+  "phalanx": {
+    "chineseName": "陣法術師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "soulcaster": {
+    "chineseName": "塑靈術師",
+    "attackType": "法術",
+    "position": "高台"
+  },  
+  "primcaster": {
+    "chineseName": "本源術師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+
+  "slower": {
+    "chineseName": "凝滯師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "underminer": {
+    "chineseName": "削弱者",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "blessing": {
+    "chineseName": "護佑者",
+    "attackType": "法術",
+    "position": "高台"
+  }, 
+  "summoner": {
+    "chineseName": "召喚師",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "ritualist": {
+    "chineseName": "巫役",
+    "attackType": "法術",
+    "position": "高台"
+  },
+  "bard": {
+    "chineseName": "吟遊者",
+    "attackType": "不攻擊",
+    "position": "高台"
+  },
+  "craftsman": {
+    "chineseName": "工匠",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  
+  "pusher": {
+    "chineseName": "推擊手",
+    "attackType": "物理",
+    "position": "通用"
+  },
+  "hookmaster": {
+    "chineseName": "鉤索師",
+    "attackType": "物理",
+    "position": "通用"
+  },
+  "executor": {
+    "chineseName": "處決者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "merchant": {
+    "chineseName": "行商",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "geek": {
+    "chineseName": "怪杰",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "stalker": {
+    "chineseName": "伏擊客",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "traper": {
+    "chineseName": "陷阱師",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "dollkeeper": {
+    "chineseName": "傀儡師",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "alchemist": {
+    "chineseName": "煉金師",
+    "attackType": "物理",
+    "position": "高台"
+  },
+  "skywalker": {
+    "chineseName": "巡空者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+
+  "protector": {
+    "chineseName": "鐵衛",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "guardian": {
+    "chineseName": "守護者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "duelist": {
+    "chineseName": "決戰者",
+    "attackType": "物理",
+    "position": "地面"
+  }, 
+  "unyield": {
+    "chineseName": "不屈者",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "fortress": {
+    "chineseName": "要塞",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "artsprotector": {
+    "chineseName": "馭法鐵衛",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "shotprotector": {
+    "chineseName": "哨戒鐵衛",
+    "attackType": "物理",
+    "position": "地面"
+  },
+  "primprotector": {
+    "chineseName": "本源鐵衛",
+    "attackType": "物理",
+    "position": "地面"
+  },
+
+  "physician": {
+    "chineseName": "醫師",
+    "attackType": "治療",
+    "position": "高台"
+  },
+  "healer": {
+    "chineseName": "療養師",
+    "attackType": "治療",
+    "position": "高台"
+  },
+  "wandermedic": {
+    "chineseName": "行醫",
+    "attackType": "治療",
+    "position": "高台"
+  },
+  "ringhealer": {
+    "chineseName": "群癒師",
+    "attackType": "治療",
+    "position": "高台"
+  }, 
+  "chainhealer": {
+    "chineseName": "鍊癒師",
+    "attackType": "治療",
+    "position": "高台"
+  },
+  "incantationmedic": {
+    "chineseName": "咒癒師",
+    "attackType": "法術",
+    "position": "高台"
+  }  
+}

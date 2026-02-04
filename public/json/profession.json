@@ -1,0 +1,26 @@
+{
+  "PIONEER": {
+    "chineseName": "先鋒"
+  },
+  "WARRIOR": {
+    "chineseName": "近衛"
+  },
+  "SNIPER": {
+    "chineseName": "狙擊"
+  },
+  "CASTER": {
+    "chineseName": "術師"
+  },
+  "SUPPORT": {
+    "chineseName": "輔助"
+  },    
+  "SPECIAL": {
+    "chineseName": "特種"
+  },
+  "TANK": {
+    "chineseName": "重裝"
+  },
+  "MEDIC": {
+    "chineseName": "醫療"
+  }
+}
