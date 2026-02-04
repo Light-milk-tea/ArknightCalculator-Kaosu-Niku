@@ -2,7 +2,7 @@ name: 部署 React 應用到 GitHub Pages
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
     paths:
       - "public/**"
       - "src/**"
